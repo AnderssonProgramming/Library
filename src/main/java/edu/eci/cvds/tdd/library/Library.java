@@ -1,5 +1,6 @@
 package edu.eci.cvds.tdd.library;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -7,6 +8,7 @@ import java.util.Map;
 
 import edu.eci.cvds.tdd.library.book.Book;
 import edu.eci.cvds.tdd.library.loan.Loan;
+import edu.eci.cvds.tdd.library.loan.LoanStatus;
 import edu.eci.cvds.tdd.library.user.User;
 
 /**
@@ -79,8 +81,57 @@ public class Library {
      * @return The new created loan.
      */
     public Loan loanABook(String userId, String isbn) {
-        //TODO Implement the login of loan a book to a user based on the UserId and the isbn.
-        return null;
+        // Verificar si el libro está disponible
+        Book bookToLoan = null;
+        for (Book book : books.keySet()) {
+            if (book.getIsbn().equals(isbn)) {
+                bookToLoan = book;
+                break;
+            }
+        }
+
+        if (bookToLoan == null || books.get(bookToLoan) <= 0) {
+            // Si el libro no existe o no está disponible
+            return null;
+        }
+
+        // Verificar si el usuario existe
+        User userToLoan = null;
+        for (User user : users) {
+            if (user.getId().equals(userId)) {
+                userToLoan = user;
+                break;
+            }
+        }
+
+        if (userToLoan == null) {
+            // Si el usuario no existe
+            return null;
+        }
+
+        // Verificar si el usuario ya tiene un préstamo activo para el mismo libro
+        for (Loan existingLoan : loans) {
+            if (existingLoan.getUser().equals(userToLoan) && existingLoan.getBook().equals(bookToLoan) 
+                && existingLoan.getStatus() == LoanStatus.ACTIVE) {
+                // Si el usuario ya tiene un préstamo activo para el libro
+                return null;
+            }
+        }
+
+        // Crear un nuevo préstamo
+        Loan newLoan = new Loan();
+        newLoan.setBook(bookToLoan);
+        newLoan.setUser(userToLoan);
+        newLoan.setLoanDate(LocalDateTime.now());
+        newLoan.setStatus(LoanStatus.ACTIVE);
+
+        // Disminuir la cantidad de libros disponibles
+        books.put(bookToLoan, books.get(bookToLoan) - 1);
+
+        // Guardar el nuevo préstamo
+        loans.add(newLoan);
+
+        return newLoan;  // Devolver el préstamo creado
     }
 
     /**
