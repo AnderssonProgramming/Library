@@ -39,19 +39,19 @@ public class LibraryTest {
 
     @Test
     public void testLoanABookShouldTrue() {
-        // arrange
+        
         Book book = new Book("The Prince", "Machiavelli", "1001");
         User user = new User();
         user.setName("Cris");
         user.setId("1001");
         Library library = new Library();
         library.addBook(book);
-        library.addUser(user);  // Asegurarnos de agregar al usuario a la biblioteca
+        library.addUser(user);  
 
-        // act
-        Loan loan = library.loanABook(user.getId(), book.getIsbn());  // Usar userId e isbn como parámetros
+        
+        Loan loan = library.loanABook(user.getId(), book.getIsbn());  
 
-        // assert
+        
         assertTrue(loan != null && loan.getStatus() == LoanStatus.ACTIVE);
     }
     
