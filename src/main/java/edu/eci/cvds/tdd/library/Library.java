@@ -1,13 +1,13 @@
 package edu.eci.cvds.tdd.library;
 
-import edu.eci.cvds.tdd.library.book.Book;
-import edu.eci.cvds.tdd.library.loan.Loan;
-import edu.eci.cvds.tdd.library.user.User;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import edu.eci.cvds.tdd.library.book.Book;
+import edu.eci.cvds.tdd.library.loan.Loan;
+import edu.eci.cvds.tdd.library.user.User;
 
 /**
  * Library responsible for manage the loans and the users.
@@ -34,11 +34,37 @@ public class Library {
      *
      * @return true if the book was stored false otherwise.
      */
+    // public boolean addBook(Book book) {
+    //     //TODO Implement the logic to add a new book into the map.
+    //     for (Book b : books.keySet()){
+    //         String currentBookName = b.getTittle();
+    //         if (book.getTittle().equals(currentBookName)){
+    //             int amount = books.get(currentBookName);
+    //             books.put(book, amount+1);
+    //             return true;
+    //         }else {
+    //             books.put(book, 1);
+    //             return true;
+    //         }
+    //     }
+    //     return false;
+    // }
+
     public boolean addBook(Book book) {
-        //TODO Implement the logic to add a new book into the map.
+
+        if (book instanceof Book){
+                        
+            if (books.containsKey(book)) {  // Verificar si el libro ya existe
+                int amount = books.get(book);
+                books.put(book, amount + 1);  // Incrementar la cantidad
+            } else {
+                books.put(book, 1);  // Agregar nuevo libro con cantidad 1
+            }
+            return true;
+
+        }
         return false;
     }
-
     /**
      * This method creates a new loan with for the User identify by the userId and the book identify by the isbn,
      * the loan should be store in the list of loans, to successfully create a loan is required to validate that the
