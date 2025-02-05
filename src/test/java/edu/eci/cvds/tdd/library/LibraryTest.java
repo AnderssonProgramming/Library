@@ -1,5 +1,7 @@
 package edu.eci.cvds.tdd.library;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.Test;
 
@@ -64,5 +66,62 @@ public class LibraryTest {
 
     //     Loan loan = new Loan();
 
+    // }
+    
+
+    // private Library library;
+    // private Book book;
+    // private User user;
+    // private Loan loan;
+
+    // @Before
+    // public void setUp() {
+    //     library = new Library();
+    //     book = new Book("Effective Java", "Joshua Bloch", "1234567890");
+    //     user = new User("001", "John Doe");
+
+    //     library.addBook(book);
+    //     library.addUser(user);
+    //     loan = library.loanABook(user.getId(), book.getIsbn());
+    // }
+
+    @Test
+    public void testReturnLoanSuccessfully() {
+        Library library = new Library();
+        Book book = new Book("Effective Java", "Joshua Bloch", "1234567890");
+        User user = new User();
+        user.setName("Nick");
+        user.setId("01");
+
+        library.addBook(book);
+        library.addUser(user);
+        Loan loan = library.loanABook(user.getId(), book.getIsbn());
+
+        Loan returnedLoan = library.returnLoan(loan);
+
+        assertNotNull(returnedLoan);
+        assertEquals(LoanStatus.RETURNED, returnedLoan.getStatus());
+        assertNotNull(returnedLoan.getReturnDate());
+        //assertEquals(Integer.valueOf(1), library.getBooks().get(book));
+    }
+
+    // @Test
+    // public void testReturnLoanThatDoesNotExist() {
+    //     Loan fakeLoan = new Loan();
+    //     fakeLoan.setBook(new Book("Fake Book", "Fake Author", "0000000000"));
+    //     fakeLoan.setUser(new User("002", "Jane Doe"));
+    //     fakeLoan.setLoanDate(LocalDateTime.now());
+    //     fakeLoan.setStatus(LoanStatus.ACTIVE);
+
+    //     Loan returnedLoan = library.returnLoan(fakeLoan);
+    //     assertNull(returnedLoan);
+    // }
+
+    // @Test
+    // public void testReturnLoanAlreadyReturned() {
+    //     library.returnLoan(loan); // Primer retorno exitoso
+    //     Loan secondReturn = library.returnLoan(loan); // Segundo intento de retorno
+
+    //     assertNull(secondReturn);
     // }
 }

@@ -145,7 +145,27 @@ public class Library {
      */
     public Loan returnLoan(Loan loan) {
         //TODO Implement the login of loan a book to a user based on the UserId and the isbn.
-        return null;
+
+        //return null;
+          // Verificar si el préstamo existe en la lista de préstamos
+    if (!loans.contains(loan)) {
+        return null; // El préstamo no existe
+    }
+
+    // Verificar si el préstamo ya ha sido devuelto
+    if (loan.getStatus() == LoanStatus.RETURNED) {
+        return null; // El préstamo ya fue devuelto
+    }
+
+    // Incrementar la cantidad del libro
+    Book book = loan.getBook();
+    books.put(book, books.getOrDefault(book, 0) + 1);
+
+    // Actualizar el estado y la fecha de retorno del préstamo
+    loan.setStatus(LoanStatus.RETURNED);
+    loan.setReturnDate(LocalDateTime.now());
+
+    return loan;
     }
 
     public boolean addUser(User user) {
