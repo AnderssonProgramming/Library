@@ -1,13 +1,11 @@
 package edu.eci.cvds.tdd.library.book;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 @DisplayName("Pruebas Unitarias para la clase Book")
-public class BookTest {
+class BookTest {
 
     @Test
     @DisplayName("Constructor y getters deben inicializar correctamente los atributos")
@@ -35,7 +33,7 @@ public class BookTest {
         Book book2 = new Book("Libro Diferente", "Otro Autor", isbnComun);
         
         // Act & Assert
-        assertTrue(book1.equals(book2), "Los libros con el mismo ISBN deben ser iguales");
+        assertEquals(book1,book2, "Los libros con el mismo ISBN deben ser iguales");
     }
 
     @Test
@@ -46,6 +44,6 @@ public class BookTest {
         Book book2 = new Book("Libro Uno", "Autor Uno", "0987654321");
         
         // Act & Assert
-        assertFalse(book1.equals(book2), "Los libros con ISBN diferentes no deben ser iguales");
+        assertNotEquals(book1,book2, "Los libros con ISBN diferentes no deben ser iguales");
     }
 }

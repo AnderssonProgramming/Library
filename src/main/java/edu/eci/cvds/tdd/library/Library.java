@@ -39,21 +39,6 @@ public class Library {
      *
      * @return true if the book was stored false otherwise.
      */
-    // public boolean addBook(Book book) {
-    // //TODO Implement the logic to add a new book into the map.
-    // for (Book b : books.keySet()){
-    // String currentBookName = b.getTittle();
-    // if (book.getTittle().equals(currentBookName)){
-    // int amount = books.get(currentBookName);
-    // books.put(book, amount+1);
-    // return true;
-    // }else {
-    // books.put(book, 1);
-    // return true;
-    // }
-    // }
-    // return false;
-    // }
 
     public boolean addBook(Book book) {
         if (books.containsKey(book)) { // Verificar si el libro ya existe
@@ -149,10 +134,7 @@ public class Library {
      * @return the loan with the RETURNED status.
      */
     public Loan returnLoan(Loan loan) {
-        // TODO Implement the login of loan a book to a user based on the UserId and the
-        // isbn.
-
-        // return null;
+    
         // Verificar si el préstamo existe en la lista de préstamos
         if (!loans.contains(loan)) {
             return null; // El préstamo no existe

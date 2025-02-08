@@ -315,6 +315,13 @@ Para validar que la estructura del proyecto está bien se debe compilar usando e
 Para poder implementar los métodos `addBook`, `loanABook` y `returnLoan` de la clase `Library` vamos a aplicar la técnica de TDD, por cada caso de prueba se debe hacer un commit, cada commit debe tener la prueba nueva y la implementación para que la prueba del commit funcione. Las pruebas anteriormente implementadas deben continuar funcionando. Como están trabajando en parejas es necesario trabajar en ramas independientes y utilizar Pull Request para mezclar los cambios.
 
 
+Teniendo en cuenta esa técnica, hicimos las pruebas primero, y nos damos cuenta que las pruebas no pasan porque no se ha hecho la implementación correspondiente:
+
+![alt text](assets/image-28.png)
+
+
+
+
 ## CREAR CLASE DE PRUEBA
 Es necesario crear la clase de prueba para `edu.eci.cvds.tdd.Library`, la clase debe seguir los estándares de nombres estudiados en clase.
 
@@ -414,6 +421,9 @@ Ahora es necesario hacer el análisis estático del código usando SonarQube, pa
 
 ![alt text](assets/image-17.png)
 
+![alt text](assets/image-25.png)
+
+
 
 ![alt text](assets/image-24.png)
 
@@ -457,6 +467,21 @@ En este caso con este comando: `mvn verify sonar:sonar -D sonar.token=squ_ac7558
 
 * Se verifica en SonarLint el proyecto Library 
 ![alt text](assets/image-23.png)
+
+
+## PRUEBAS FINALES
+Luego de hacer todas las pruebas, y luego si hacer la implementación necesaria para que estas pasaran. Se obtuvo
+en SonarQube una cobertura de:
+
+![alt text](assets/image-26.png)
+
+
+Y también se mira el análisis estático de las pruebas, validando que para clase se hicieron las pruebas correspondientes, y se cumple con las condiciones prestablecidas:
+
+![alt text](assets/image-27.png)
+
+
+
 
 ## CONFIGURACIÓN DE GITIGNORE
 En este caso, se ignoran los directorios `target` y `.mvn`.

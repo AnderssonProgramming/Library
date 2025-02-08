@@ -5,48 +5,78 @@ import edu.eci.cvds.tdd.library.user.User;
 import org.junit.jupiter.api.Test;
 import java.time.LocalDateTime;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import org.junit.jupiter.api.DisplayName;
 
-
-
-public class LoanTest {
+@DisplayName("Pruebas Unitarias para la clase Loan")
+class LoanTest {
 
     @Test
-    public void testGetAndSetBook() {
+    @DisplayName("Debería obtener y establecer el libro correctamente")
+    void testGetAndSetBook() {
+        // Arrange
         Loan loan = new Loan();
-        Book book = new Book("Hola", "Pedro", "4781248");
-        loan.setBook(book);
-        assertEquals(book, loan.getBook());
+        Book expectedBook = new Book("Hola", "Pedro", "4781248");
+        
+        // Act
+        loan.setBook(expectedBook);
+        
+        // Assert
+        assertEquals(expectedBook, loan.getBook(), "El libro obtenido debe coincidir con el establecido");
     }
 
     @Test
-    public void testGetAndSetUser() {
+    @DisplayName("Debería obtener y establecer el usuario correctamente")
+    void testGetAndSetUser() {
+        // Arrange
         Loan loan = new Loan();
-        User user = new User();
-        loan.setUser(user);
-        assertEquals(user, loan.getUser());
+        User expectedUser = new User();
+        
+        // Act
+        loan.setUser(expectedUser);
+        
+        // Assert
+        assertEquals(expectedUser, loan.getUser(), "El usuario obtenido debe coincidir con el establecido");
     }
 
     @Test
-    public void testGetAndSetLoanDate() {
+    @DisplayName("Debería obtener y establecer la fecha de préstamo correctamente")
+    void testGetAndSetLoanDate() {
+        // Arrange
         Loan loan = new Loan();
-        LocalDateTime loanDate = LocalDateTime.now();
-        loan.setLoanDate(loanDate);
-        assertEquals(loanDate, loan.getLoanDate());
+        LocalDateTime expectedLoanDate = LocalDateTime.now();
+        
+        // Act
+        loan.setLoanDate(expectedLoanDate);
+        
+        // Assert
+        assertEquals(expectedLoanDate, loan.getLoanDate(), "La fecha de préstamo debe coincidir con la establecida");
     }
 
     @Test
-    public void testGetAndSetStatus() {
+    @DisplayName("Debería obtener y establecer el estado del préstamo correctamente")
+    void testGetAndSetStatus() {
+        // Arrange
         Loan loan = new Loan();
-        LoanStatus status = LoanStatus.ACTIVE;
-        loan.setStatus(status);
-        assertEquals(status, loan.getStatus());
+        LoanStatus expectedStatus = LoanStatus.ACTIVE;
+        
+        // Act
+        loan.setStatus(expectedStatus);
+        
+        // Assert
+        assertEquals(expectedStatus, loan.getStatus(), "El estado del préstamo debe coincidir con el establecido");
     }
 
     @Test
-    public void testGetAndSetReturnDate() {
+    @DisplayName("Debería obtener y establecer la fecha de devolución correctamente")
+    void testGetAndSetReturnDate() {
+        // Arrange
         Loan loan = new Loan();
-        LocalDateTime returnDate = LocalDateTime.now().plusDays(7);
-        loan.setReturnDate(returnDate);
-        assertEquals(returnDate, loan.getReturnDate());
+        LocalDateTime expectedReturnDate = LocalDateTime.now().plusDays(7);
+        
+        // Act
+        loan.setReturnDate(expectedReturnDate);
+        
+        // Assert
+        assertEquals(expectedReturnDate, loan.getReturnDate(), "La fecha de devolución debe coincidir con la establecida");
     }
 }
